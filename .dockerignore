@@ -1,0 +1,18 @@
+# Windows'dagi node_modules hech qachon image ichiga tushmasin
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+.git
+.gitignore
+.env
+.DS_Store
+
+# Faqat lokal ishlatiladigan asset skriptlari (sharp'ga bog'liq)
+scripts
+
+Dockerfile
+.dockerignore
+README.md
+DEPLOY.md

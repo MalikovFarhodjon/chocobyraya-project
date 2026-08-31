@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000;
 const activeSessions = new Set(['demo-admin-token-12345']);
 
 // Ensure uploads folder exists
-const uploadsDir = path.join(__dirname, 'public', 'uploads');
+const uploadsDir = process.env.UPLOADS_DIR || path.join(__dirname, 'public', 'uploads');
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
@@ -90,6 +90,11 @@ async function sendTelegramOrderNotification(order) {
 }
 
 // ================= API ENDPOINTS =================
+
+// --- Health check (Coolify uchun) ---
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', uptime: process.uptime() });
+});
 
 // --- Auth ---
 app.post('/api/auth/login', (req, res) => {

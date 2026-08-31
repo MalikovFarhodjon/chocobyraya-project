@@ -4,7 +4,10 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const DB_FILE = path.join(__dirname, 'store.json');
+// DATA_DIR ni sozlab, ma'lumotlar bazasini kod papkasidan tashqariga (masalan
+// Coolify'dagi doimiy volume ichiga) chiqarish mumkin. Aks holda kod yonida turadi.
+const DATA_DIR = process.env.DATA_DIR || __dirname;
+const DB_FILE = path.join(DATA_DIR, 'store.json');
 
 const initialData = {
   admin: {
@@ -315,6 +318,9 @@ class Database {
 
   init() {
     try {
+      if (!fs.existsSync(DATA_DIR)) {
+        fs.mkdirSync(DATA_DIR, { recursive: true });
+      }
       if (!fs.existsSync(DB_FILE)) {
         this.data = JSON.parse(JSON.stringify(initialData));
         this.save();
