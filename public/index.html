@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choco_by_Raya ♡ - Shokoladli Qulupnaylar va Nafis Sovg'alar</title>
+  <meta name="description" content="Toshkentda qo'lda tayyorlangan hashamatli shokoladli qulupnaylar, sovg'abop to'plamlar va shirin guldastalar. Bepul va tezkor yetkazib berish.">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="/images/logo_strawberry.jpg" type="image/jpeg">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner" id="topBarAnnouncements">
+      <div class="top-bar-item">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h2m-6 0a2 2 0 100 4 2 2 0 000-4zm10 0a2 2 0 100 4 2 2 0 000-4z"/></svg>
+        <span>Yetkazib berish Toshkent bo'ylab bepul</span>
+      </div>
+      <div class="top-bar-item">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <span>100% sifatli va tabiiy mahsulotlar</span>
+      </div>
+      <div class="top-bar-item">
+        <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        <span>Qo'lda tayyorlangan muhtasham ta'm</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-inner">
+      <a href="/" class="brand-logo">
+        <span class="brand-logo-text" id="headerBrandName">Choco_by_Raya</span>
+        <span class="brand-logo-sub">♡</span>
+      </a>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#hero" class="active">Asosiy</a></li>
+          <li><a href="#products">Mahsulotlar</a></li>
+          <li><a href="#categories">To'plamlar</a></li>
+          <li><a href="#whyUs">Biz haqimizda</a></li>
+          <li><a href="#reviews">Mijozlar fikri</a></li>
+          <li><a href="#contact">Aloqa</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Search Trigger -->
+        <button class="action-btn" id="searchBtn" title="Qidiruv">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </button>
+
+        <!-- Admin Shortcut -->
+        <a href="/admin" class="admin-link-btn" title="Admin Panel">
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+          <span>Admin</span>
+        </a>
+
+        <!-- Cart Button -->
+        <button class="action-btn" id="cartBtn" title="Savatcha">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Menyu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge" id="heroBadge">SEVGI BILAN, SIZ UCHUN</div>
+        <h1 class="hero-title" id="heroTitle">Har bir qulupnayda muhabbat va nafislik <span class="heart">♡</span></h1>
+        <p class="hero-subtitle" id="heroSubtitle">Qo'lda tayyorlangan shokoladli qulupnaylar va shirinliklar - sevimli insoningiz uchun eng mazali sovg'a.</p>
+
+        <div class="hero-buttons">
+          <a href="#products" class="btn-primary">Mahsulotlarimiz</a>
+          <a href="#categories" class="btn-outline">To'plamlar</a>
+        </div>
+
+        <div class="hero-features">
+          <div class="hero-feat-item">
+            <div class="feat-icon-box">
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <span>Bepul yetkazib berish<br><strong>Toshkent bo'ylab</strong></span>
+          </div>
+
+          <div class="hero-feat-item">
+            <div class="feat-icon-box">
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <span>Faqat tabiiy<br><strong>va sifatli mahsulotlar</strong></span>
+          </div>
+
+          <div class="hero-feat-item">
+            <div class="feat-icon-box">
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <span>Qo'lda tayyorlangan<br><strong>har bir buyurtma</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-image-wrapper">
+          <img src="/images/hero_box.jpg" alt="Choco by Raya Hashamatli Shokoladli Qulupnaylar" id="heroImage">
+        </div>
+        <div class="hero-floating-card">
+          <div class="floating-icon">✨</div>
+          <div class="floating-text">
+            <h4>100% Belgiya Shokoladi</h4>
+            <p>Eng sara qulupnaylar bilan</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories-section" id="categories">
+    <div class="container">
+      <div class="section-title-wrap">
+        <h2 class="section-title">
+          KATEGORIYALAR
+          <span class="section-heart">♡</span>
+        </h2>
+      </div>
+
+      <div class="categories-grid" id="categoriesGrid">
+        <!-- Dynamically loaded -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Products Section -->
+  <section class="products-section" id="products">
+    <div class="container">
+      <div class="section-title-wrap">
+        <h2 class="section-title">
+          POPOLYAR MAHSULOTLAR
+          <span class="section-heart">♡</span>
+        </h2>
+      </div>
+
+      <!-- Filter Chips -->
+      <div class="products-filter-bar" id="productFilterBar">
+        <button class="filter-chip active" data-category="all">Barchasi</button>
+        <!-- Dynamically loaded chips -->
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsGrid">
+        <!-- Dynamically loaded -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Split Promo & Why Us Section -->
+  <section class="promo-why-section" id="whyUs">
+    <div class="container promo-grid">
+      <!-- Why Us Card -->
+      <div class="why-us-card">
+        <div class="why-us-img">
+          <img src="/images/cat_qulupnay.jpg" alt="Nima uchun biz">
+        </div>
+        <div class="why-us-content">
+          <h3>NIMA UCHUN BIZ?</h3>
+          <div class="why-us-list">
+            <div class="why-us-item">
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Yangi va sifatli mahsulotlar</span>
+            </div>
+            <div class="why-us-item">
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Qo'lda tayyorlangan</span>
+            </div>
+            <div class="why-us-item">
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>Chiroyli va hashamatli qadoqlash</span>
+            </div>
+            <div class="why-us-item">
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              <span>O'z vaqtida yetkazib berish</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Promo Gift Card -->
+      <div class="promo-gift-banner">
+        <div class="promo-gift-text">
+          <h3 id="promoBannerTitle">Sevimli insoningiz uchun nimalardir izlayapsizmi?</h3>
+          <p id="promoBannerText">Maxsus to'plamlarimiz bilan tanishing va eng chiroyli sovg'ani tanlang.</p>
+          <a href="#categories" class="btn-primary" style="padding: 10px 22px; font-size: 0.88rem;">To'plamlarni ko'rish</a>
+        </div>
+        <div class="promo-gift-img">
+          <img src="/images/cat_sovga.jpg" alt="Maxsus Sovg'a">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section" id="reviews">
+    <div class="container">
+      <div class="section-title-wrap">
+        <h2 class="section-title">
+          MIJOZLARIMIZ FIKRI
+          <span class="section-heart">♡</span>
+        </h2>
+      </div>
+
+      <div class="testimonials-grid" id="testimonialsGrid">
+        <!-- Dynamically loaded reviews -->
+      </div>
+
+      <div class="add-review-wrap">
+        <button class="btn-outline" id="openReviewModalBtn">
+          <span>♡ Fikr bildirish</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand Col -->
+        <div class="footer-brand">
+          <a href="/" class="brand-logo">
+            <span class="brand-logo-text">Choco_by_Raya</span>
+            <span class="brand-logo-sub">♡</span>
+          </a>
+          <p class="footer-about">
+            Qo'lda tayyorlangan shokoladli shirinliklar va sevimli insonlar uchun eng chiroyli sovg'alar.
+          </p>
+          <div class="footer-socials">
+            <a href="https://instagram.com" target="_blank" class="social-btn" title="Instagram" id="footerInstagram">
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" stroke-width="2"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-width="2"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" stroke-width="2"/></svg>
+            </a>
+            <a href="https://t.me" target="_blank" class="social-btn" title="Telegram" id="footerTelegram">
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </a>
+            <a href="https://wa.me" target="_blank" class="social-btn" title="WhatsApp">
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Categories -->
+        <div class="footer-col">
+          <h4>Mahsulotlar</h4>
+          <ul id="footerCategoryLinks">
+            <li><a href="#products">Qulupnaylar</a></li>
+            <li><a href="#products">To'plamlar</a></li>
+            <li><a href="#products">Shokoladlar</a></li>
+            <li><a href="#products">Sovg'alar</a></li>
+            <li><a href="#products">Shirin guldastalar</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Company -->
+        <div class="footer-col">
+          <h4>Kompaniya</h4>
+          <ul>
+            <li><a href="#whyUs">Biz haqimizda</a></li>
+            <li><a href="#contact">Yetkazib berish</a></li>
+            <li><a href="#contact">To'lov usullari</a></li>
+            <li><a href="#contact">Aloqa</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact -->
+        <div class="footer-col">
+          <h4>Aloqa</h4>
+          <div class="footer-contact-list">
+            <div class="contact-row">
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              <span id="footerPhone">+998 90 123 45 67</span>
+            </div>
+            <div class="contact-row">
+              <svg viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" stroke-width="2"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-width="2"/></svg>
+              <span id="footerInstaTag">@choco_by_raya</span>
+            </div>
+            <div class="contact-row">
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+              <span id="footerTgTag">t.me/choco_by_raya</span>
+            </div>
+            <div class="contact-row">
+              <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <span id="footerAddress">Toshkent, O'zbekiston</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Choco_by_Raya. Barcha huquqlar himoyalangan.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= Cart Drawer ================= -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3>Savatchangiz ♡</h3>
+      <button class="drawer-close-btn" id="closeCartBtn">&times;</button>
+    </div>
+
+    <div class="cart-items-list" id="cartItemsList">
+      <!-- Items dynamically loaded -->
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-subtotal-row">
+        <span>Yetkazib berish:</span>
+        <span style="color: #48BB78; font-weight: 600;">Bepul</span>
+      </div>
+      <div class="cart-total-row">
+        <span>Jami summa:</span>
+        <span id="cartTotalSum">0 so'm</span>
+      </div>
+      <button class="btn-checkout" id="openCheckoutBtn">
+        <span>Buyurtmani rasmiylashtirish</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= Checkout Modal ================= -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal-card">
+      <button class="modal-close" id="closeCheckoutBtn">&times;</button>
+      <div class="modal-header">
+        <h3>Buyurtma berish ♡</h3>
+        <p>Ma'lumotlaringizni kiriting, tez orada buyurtmangizni yetkazamiz</p>
+      </div>
+      <div class="modal-body">
+        <form id="checkoutForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="custName">Ismingiz *</label>
+              <input type="text" id="custName" class="form-input" placeholder="Masalan: Nilufar" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="custPhone">Telefon raqamingiz *</label>
+              <input type="tel" id="custPhone" class="form-input" placeholder="+998 90 123 45 67" value="+998 " required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="custDistrict">Tuman *</label>
+              <select id="custDistrict" class="form-select" required>
+                <option value="Yunusobod tumani">Yunusobod tumani</option>
+                <option value="Mirzo Ulug'bek tumani">Mirzo Ulug'bek tumani</option>
+                <option value="Shayxontohur tumani">Shayxontohur tumani</option>
+                <option value="Chilonzor tumani">Chilonzor tumani</option>
+                <option value="Yakkasaroy tumani">Yakkasaroy tumani</option>
+                <option value="Mirobod tumani">Mirobod tumani</option>
+                <option value="Uchtepa tumani">Uchtepa tumani</option>
+                <option value="Olmazor tumani">Olmazor tumani</option>
+                <option value="Sergeli tumani">Sergeli tumani</option>
+                <option value="Yangi Hayot tumani">Yangi Hayot tumani</option>
+                <option value="Bektemir tumani">Bektemir tumani</option>
+                <option value="Toshkent viloyati">Toshkent viloyati</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="custDeliveryTime">Qulay vaqt</label>
+              <select id="custDeliveryTime" class="form-select">
+                <option value="Tez fursatda (1-2 soat)">Tez fursatda (1-2 soat)</option>
+                <option value="12:00 - 15:00">12:00 - 15:00</option>
+                <option value="15:00 - 18:00">15:00 - 18:00</option>
+                <option value="18:00 - 21:00">18:00 - 21:00</option>
+                <option value="Ertaga">Ertaga yetkazish</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="custAddress">Aniq manzil (ko'cha, uy, xonadon) *</label>
+            <input type="text" id="custAddress" class="form-input" placeholder="Masalan: Amir Temur ko'chasi, 12-uy, 45-xonadon" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="custGiftNote">💌 Tabriknoma matni (ixtiyoriy)</label>
+            <textarea id="custGiftNote" class="form-textarea" rows="2" placeholder="Sovg'a qutisiga qo'shiladigan tilak yoki tabrik so'zi..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">To'lov usuli</label>
+            <div class="payment-grid">
+              <div>
+                <input type="radio" name="payMethod" id="payPayme" value="Payme" class="payment-radio-input" checked>
+                <label for="payPayme" class="payment-radio-label">Payme</label>
+              </div>
+              <div>
+                <input type="radio" name="payMethod" id="payClick" value="Click" class="payment-radio-input">
+                <label for="payClick" class="payment-radio-label">Click</label>
+              </div>
+              <div>
+                <input type="radio" name="payMethod" id="payUzum" value="Uzum" class="payment-radio-input">
+                <label for="payUzum" class="payment-radio-label">Uzum Pay</label>
+              </div>
+              <div>
+                <input type="radio" name="payMethod" id="payCash" value="Naqd" class="payment-radio-input">
+                <label for="payCash" class="payment-radio-label">Naqd</label>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <button type="submit" class="btn-checkout" id="submitOrderBtn">
+              <span>Tasdiqlash va Buyurtma berish</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= Quick View Modal ================= -->
+  <div class="modal-overlay" id="quickViewModal">
+    <div class="modal-card">
+      <button class="modal-close" id="closeQuickViewBtn">&times;</button>
+      <div class="modal-body" style="padding-top: 36px;">
+        <div class="quick-view-grid" id="quickViewContent">
+          <!-- Dynamic Content -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= Search Modal ================= -->
+  <div class="modal-overlay" id="searchModal">
+    <div class="modal-card" style="max-width: 500px;">
+      <button class="modal-close" id="closeSearchBtn">&times;</button>
+      <div class="modal-header">
+        <h3>Mahsulot qidirish</h3>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <input type="text" id="searchInput" class="form-input" placeholder="Qulupnay, to'plam yoki shokolad nomi..." autofocus>
+        </div>
+        <div id="searchResultsList" style="max-height: 280px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= Review Modal ================= -->
+  <div class="modal-overlay" id="reviewModal">
+    <div class="modal-card" style="max-width: 480px;">
+      <button class="modal-close" id="closeReviewBtn">&times;</button>
+      <div class="modal-header">
+        <h3>Fikr qoldirish ♡</h3>
+        <p>Sizning fikringiz biz uchun juda muhim!</p>
+      </div>
+      <div class="modal-body">
+        <form id="reviewForm">
+          <div class="form-group">
+            <label class="form-label" for="revAuthor">Ismingiz *</label>
+            <input type="text" id="revAuthor" class="form-input" placeholder="Nilufar A." required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="revRating">Baholash *</label>
+            <select id="revRating" class="form-select">
+              <option value="5">⭐⭐⭐⭐⭐ (5/5) A'lo darajada</option>
+              <option value="4">⭐⭐⭐⭐ (4/5) Juda yaxshi</option>
+              <option value="3">⭐⭐⭐ (3/5) Yaxshi</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="revComment">Fikringiz *</label>
+            <textarea id="revComment" class="form-textarea" rows="3" placeholder="Mahsulot ta'mi va yetkazib berish haqida fikringiz..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%;">
+            <span>Fikrni yuborish</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notifications -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Floating Quick Actions -->
+  <div class="floating-actions-bar">
+    <a href="https://t.me/choco_by_raya" target="_blank" class="float-btn float-tg" title="Telegramda yozish">
+      <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+    </a>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>

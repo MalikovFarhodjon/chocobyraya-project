@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boshqaruv Paneli | Choco_by_Raya</title>
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="icon" href="/images/logo_strawberry.jpg" type="image/jpeg">
+</head>
+<body>
+
+  <!-- ================= Login Screen Overlay ================= -->
+  <div class="login-screen-overlay" id="loginOverlay">
+    <div class="login-card">
+      <div class="login-brand-logo">Choco_by_Raya ♡</div>
+      <p class="login-card-sub">Admin Boshqaruv Paneliga Kirish</p>
+
+      <div class="login-hint-pill">
+        🔒 Standart login: <strong>admin</strong> | parol: <strong>admin123</strong>
+      </div>
+
+      <form id="adminLoginForm">
+        <div class="admin-form-group" style="text-align: left;">
+          <label class="admin-form-label" for="loginUsername">Login</label>
+          <input type="text" id="loginUsername" class="admin-input" placeholder="admin" value="admin" required>
+        </div>
+
+        <div class="admin-form-group" style="text-align: left;">
+          <label class="admin-form-label" for="loginPassword">Parol</label>
+          <input type="password" id="loginPassword" class="admin-input" placeholder="••••••••" value="admin123" required>
+        </div>
+
+        <button type="submit" class="btn-admin-primary" style="width: 100%; justify-content: center; padding: 12px; margin-top: 10px;">
+          <span>Tizimga kirish</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= Admin Layout ================= -->
+  <div class="admin-layout" id="adminLayout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-brand">
+        <div class="sidebar-brand-icon">🍓</div>
+        <div class="sidebar-brand-text">
+          <h2>Choco_by_Raya</h2>
+          <p>Admin Panel</p>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-item active" data-tab="dashboard">
+          <svg viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          <span>Dashboard</span>
+        </div>
+        <div class="nav-item" data-tab="orders">
+          <svg viewBox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <span>Buyurtmalar</span>
+        </div>
+        <div class="nav-item" data-tab="products">
+          <svg viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+          <span>Mahsulotlar</span>
+        </div>
+        <div class="nav-item" data-tab="categories">
+          <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+          <span>Kategoriyalar</span>
+        </div>
+        <div class="nav-item" data-tab="reviews">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          <span>Mijozlar fikri</span>
+        </div>
+        <div class="nav-item" data-tab="settings">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          <span>Sayt Sozlamalari</span>
+        </div>
+        <div class="nav-item" data-tab="security">
+          <svg viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          <span>Xavfsizlik</span>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="/" target="_blank" class="sidebar-btn-site">
+          <span>🌐 Asosiy saytga o'tish</span>
+        </a>
+        <button class="sidebar-btn-logout" id="adminLogoutBtn">
+          <span>Chiqish</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div class="page-title">
+          <h1 id="topbarTitle">Dashboard</h1>
+          <p id="topbarSubtitle">Tizim umumiy holati va statistika</p>
+        </div>
+        <div class="topbar-profile">
+          <div class="profile-avatar">R</div>
+          <div class="profile-info">
+            <div class="profile-name">Raya (Admin)</div>
+            <div class="profile-role">Bosh administrator</div>
+          </div>
+        </div>
+      </header>
+
+      <div class="admin-container">
+
+        <!-- ================= TAB 1: DASHBOARD ================= -->
+        <div class="tab-pane active" id="tab-dashboard">
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-data">
+                <h4>Bugungi Buyurtmalar</h4>
+                <div class="metric-value" id="kpiTodayOrders">0</div>
+                <div class="metric-sub">Faol buyurtmalar</div>
+              </div>
+              <div class="metric-icon-box icon-pink">🛍️</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-data">
+                <h4>Jami Daromad</h4>
+                <div class="metric-value" id="kpiTotalRevenue">0 so'm</div>
+                <div class="metric-sub">Barcha to'langanlar</div>
+              </div>
+              <div class="metric-icon-box icon-green">💰</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-data">
+                <h4>Mahsulotlar</h4>
+                <div class="metric-value" id="kpiTotalProducts">0</div>
+                <div class="metric-sub">Faol shirinliklar</div>
+              </div>
+              <div class="metric-icon-box icon-blue">🍓</div>
+            </div>
+
+            <div class="metric-card">
+              <div class="metric-data">
+                <h4>Mijozlar Fikrlari</h4>
+                <div class="metric-value" id="kpiTotalReviews">0</div>
+                <div class="metric-sub">Tasdiqlangan sharhlar</div>
+              </div>
+              <div class="metric-icon-box icon-orange">⭐</div>
+            </div>
+          </div>
+
+          <!-- Recent Orders Card -->
+          <div class="content-card">
+            <div class="card-header">
+              <h3>So'nggi Buyurtmalar</h3>
+              <button class="btn-admin-primary btn-admin-sm" onclick="switchTab('orders')">Barchasini ko'rish</button>
+            </div>
+            <div class="card-body" style="padding: 0;">
+              <div class="table-responsive">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Buyurtma #</th>
+                      <th>Mijoz</th>
+                      <th>Telefon</th>
+                      <th>Manzil / Tuman</th>
+                      <th>Summa</th>
+                      <th>Holati</th>
+                      <th>Harakat</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dashboardRecentOrdersTable">
+                    <!-- Loaded dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 2: ORDERS ================= -->
+        <div class="tab-pane" id="tab-orders">
+          <div class="content-card">
+            <div class="card-header">
+              <h3>Barcha Buyurtmalar</h3>
+              <div style="display: flex; gap: 10px; align-items: center;">
+                <input type="text" id="orderSearchInput" class="admin-input" placeholder="Buyurtma #, mijoz yoki telefon..." style="width: 250px;">
+                <select id="orderStatusFilter" class="admin-select" style="width: 170px;">
+                  <option value="all">Barcha holatlar</option>
+                  <option value="Yangi">🟡 Yangi</option>
+                  <option value="Tayyorlanmoqda">🔵 Tayyorlanmoqda</option>
+                  <option value="Yetkazilmoqda">🟣 Yetkazilmoqda</option>
+                  <option value="Yetkazildi">🟢 Yetkazildi</option>
+                  <option value="Bekor qilindi">🔴 Bekor qilindi</option>
+                </select>
+              </div>
+            </div>
+            <div class="card-body" style="padding: 0;">
+              <div class="table-responsive">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Buyurtma #</th>
+                      <th>Vaqt</th>
+                      <th>Mijoz</th>
+                      <th>Telefon</th>
+                      <th>Manzil</th>
+                      <th>Summa</th>
+                      <th>Holati</th>
+                      <th>Harakatlar</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ordersTableBody">
+                    <!-- Loaded dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 3: PRODUCTS ================= -->
+        <div class="tab-pane" id="tab-products">
+          <div class="content-card">
+            <div class="card-header">
+              <h3>Mahsulotlar Katalogi</h3>
+              <div style="display: flex; gap: 12px;">
+                <button class="btn-admin-primary" id="openAddProductModalBtn">
+                  <span>+ Yangi Mahsulot Qo'shish</span>
+                </button>
+              </div>
+            </div>
+            <div class="card-body" style="padding: 0;">
+              <div class="table-responsive">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Rasm</th>
+                      <th>Nomi</th>
+                      <th>Kategoriya</th>
+                      <th>Narxi</th>
+                      <th>Eski Narx</th>
+                      <th>Belgi (Badge)</th>
+                      <th>Harakatlar</th>
+                    </tr>
+                  </thead>
+                  <tbody id="productsTableBody">
+                    <!-- Loaded dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 4: CATEGORIES ================= -->
+        <div class="tab-pane" id="tab-categories">
+          <div class="content-card">
+            <div class="card-header">
+              <h3>Kategoriyalar Ro'yxati</h3>
+              <button class="btn-admin-primary" id="openAddCategoryModalBtn">
+                <span>+ Yangi Kategoriya</span>
+              </button>
+            </div>
+            <div class="card-body" style="padding: 0;">
+              <div class="table-responsive">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Rasm</th>
+                      <th>Kategoriya Nomi</th>
+                      <th>Slug (Identifikator)</th>
+                      <th>Mahsulotlar Soni</th>
+                      <th>Harakatlar</th>
+                    </tr>
+                  </thead>
+                  <tbody id="categoriesTableBody">
+                    <!-- Loaded dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 5: REVIEWS ================= -->
+        <div class="tab-pane" id="tab-reviews">
+          <div class="content-card">
+            <div class="card-header">
+              <h3>Mijozlar Fikrlari & Sharhlar</h3>
+              <button class="btn-admin-primary" id="openAddReviewModalBtn">
+                <span>+ Yangi Fikr Kiritish</span>
+              </button>
+            </div>
+            <div class="card-body" style="padding: 0;">
+              <div class="table-responsive">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Muallif</th>
+                      <th>Baho</th>
+                      <th>Sharh Matni</th>
+                      <th>Sana</th>
+                      <th>Harakatlar</th>
+                    </tr>
+                  </thead>
+                  <tbody id="reviewsTableBody">
+                    <!-- Loaded dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 6: SETTINGS ================= -->
+        <div class="tab-pane" id="tab-settings">
+          <div class="content-card">
+            <div class="card-header">
+              <h3>Sayt Kontenti va Sozlamalari</h3>
+            </div>
+            <div class="card-body">
+              <form id="siteSettingsForm">
+                <div class="admin-form-row">
+                  <div class="admin-form-group">
+                    <label class="admin-form-label" for="setBrandName">Brend Nomi</label>
+                    <input type="text" id="setBrandName" class="admin-input" required>
+                  </div>
+                  <div class="admin-form-group">
+                    <label class="admin-form-label" for="setHeroBadge">Hero Badge Matni</label>
+                    <input type="text" id="setHeroBadge" class="admin-input" required>
+                  </div>
+                </div>
+
+                <div class="admin-form-group">
+                  <label class="admin-form-label" for="setSlogan">Bosh Sarlavha (Slogan)</label>
+                  <input type="text" id="setSlogan" class="admin-input" required>
+                </div>
+
+                <div class="admin-form-group">
+                  <label class="admin-form-label" for="setSubSlogan">Kichik Tavsif Matni (Sub-slogan)</label>
+                  <textarea id="setSubSlogan" class="admin-textarea" rows="2" required></textarea>
+                </div>
+
+                <div class="admin-form-row">
+                  <div class="admin-form-group">
+                    <label class="admin-form-label" for="setPromoTitle">Sovg'a Banneri Sarlavhasi</label>
+                    <input type="text" id="setPromoTitle" class="admin-input" required>
+                  </div>
+                  <div class="admin-form-group">
+                    <label class="admin-form-label" for="setPromoText">Sovg'a Banneri Matni</label>
+                    <input type="text" id="setPromoText" class="admin-input" required>
+                  </div>
+                </div>
+
+                <div class="admin-form-row">
+                  <div class="admin-form-group">
+                    <label class="admin-form-label" for="setPhone">Telefon Raqam</label>
+                    <input type="text" id="setPhone" class="admin-input" required>
+                  </div>
+                  <div class="admin-form-group">
+                    <label class="admin-form-label" for="setInstagram">Instagram Profil (foydalanuvchi nomi)</label>
+                    <input type="text" id="setInstagram" class="admin-input" placeholder="choco_by_raya">
+                  </div>
+                </div>
+
+                <div class="admin-form-row">
+                  <div class="admin-form-group">
+                    <label class="admin-form-label" for="setTelegram">Telegram Profil / Kanal</label>
+                    <input type="text" id="setTelegram" class="admin-input" placeholder="choco_by_raya">
+                  </div>
+                  <div class="admin-form-group">
+                    <label class="admin-form-label" for="setAddress">Manzil</label>
+                    <input type="text" id="setAddress" class="admin-input">
+                  </div>
+                </div>
+
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--admin-border);">
+
+                <h4 style="margin-bottom: 14px; color: var(--admin-primary);">🤖 Telegram Bot Xabarnoma Integratsiyasi</h4>
+                <p style="font-size: 0.82rem; color: var(--admin-text-muted); margin-bottom: 14px;">Saytda yangi buyurtma tushganda avtomatik ravishda sizning Telegram guruh yoki botingizga yuboriladi.</p>
+
+                <div class="admin-form-row">
+                  <div class="admin-form-group">
+                    <label class="admin-form-label" for="setTgBotToken">Telegram Bot Token (BotFather'dan)</label>
+                    <input type="text" id="setTgBotToken" class="admin-input" placeholder="123456789:ABCdefGhIJKlmNoPQRstuVWXyz">
+                  </div>
+                  <div class="admin-form-group">
+                    <label class="admin-form-label" for="setTgChatId">Telegram Chat ID / Guruh ID</label>
+                    <input type="text" id="setTgChatId" class="admin-input" placeholder="-100123456789 yoki 12345678">
+                  </div>
+                </div>
+
+                <button type="submit" class="btn-admin-primary" style="margin-top: 10px;">
+                  <span>Sozlamalarni Saqlash</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 7: SECURITY ================= -->
+        <div class="tab-pane" id="tab-security">
+          <div class="content-card" style="max-width: 500px;">
+            <div class="card-header">
+              <h3>Admin Parolini O'zgartirish</h3>
+            </div>
+            <div class="card-body">
+              <form id="changePasswordForm">
+                <div class="admin-form-group">
+                  <label class="admin-form-label" for="secOldPassword">Joriy Parol</label>
+                  <input type="password" id="secOldPassword" class="admin-input" placeholder="••••••••" required>
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-form-label" for="secNewPassword">Yangi Parol</label>
+                  <input type="password" id="secNewPassword" class="admin-input" placeholder="••••••••" required>
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-form-label" for="secConfirmPassword">Yangi Parolni Tasdiqlang</label>
+                  <input type="password" id="secConfirmPassword" class="admin-input" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-admin-primary" style="width: 100%; justify-content: center;">
+                  <span>Parolni Yangilash</span>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ================= PRODUCT MODAL ================= -->
+  <div class="login-screen-overlay hidden" id="productModal" style="background: rgba(0,0,0,0.6);">
+    <div class="login-card" style="max-width: 600px; text-align: left;">
+      <h3 id="productModalTitle" style="font-size: 1.25rem; margin-bottom: 16px;">Yangi Mahsulot Qo'shish</h3>
+      <form id="productForm">
+        <input type="hidden" id="prodId">
+        
+        <div class="admin-form-group">
+          <label class="admin-form-label" for="prodName">Mahsulot Nomi *</label>
+          <input type="text" id="prodName" class="admin-input" placeholder="Shokoladli qulupnay Classic" required>
+        </div>
+
+        <div class="admin-form-row">
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="prodCategory">Kategoriya *</label>
+            <select id="prodCategory" class="admin-select" required></select>
+          </div>
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="prodBadge">Belgi (Badge / Tag)</label>
+            <input type="text" id="prodBadge" class="admin-input" placeholder="Hit, Top, Yangi, Eksklyuziv">
+          </div>
+        </div>
+
+        <div class="admin-form-row">
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="prodPrice">Narxi (so'm) *</label>
+            <input type="number" id="prodPrice" class="admin-input" placeholder="45000" required>
+          </div>
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="prodOldPrice">Eski Narxi (so'm)</label>
+            <input type="number" id="prodOldPrice" class="admin-input" placeholder="55000">
+          </div>
+        </div>
+
+        <div class="admin-form-row">
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="prodWeight">Vazni / Donasi</label>
+            <input type="text" id="prodWeight" class="admin-input" placeholder="1 dona (35-45g)">
+          </div>
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="prodRating">Baho (1-5)</label>
+            <input type="number" step="0.1" max="5" min="1" id="prodRating" class="admin-input" value="5.0">
+          </div>
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-form-label" for="prodDescription">Qisqa Tavsif</label>
+          <textarea id="prodDescription" class="admin-textarea" rows="2" placeholder="Belgiya sutli va qora shokoladiga botirilgan yangi sara qulupnay..."></textarea>
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-form-label" for="prodImage">Rasm URL yoki Fayl yuklash</label>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <input type="text" id="prodImage" class="admin-input" placeholder="/images/prod_classic.jpg" required>
+            <label class="btn-admin-primary btn-admin-sm" style="cursor: pointer; white-space: nowrap;">
+              Yuklash <input type="file" id="prodImageFile" accept="image/*" style="display: none;">
+            </label>
+          </div>
+          <div class="img-preview-box">
+            <img id="prodImagePreview" src="/images/prod_classic.jpg" alt="Preview">
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+          <button type="button" class="btn-admin-danger btn-admin-sm" onclick="closeProductModal()">Bekor qilish</button>
+          <button type="submit" class="btn-admin-primary">Saqlash</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= CATEGORY MODAL ================= -->
+  <div class="login-screen-overlay hidden" id="categoryModal" style="background: rgba(0,0,0,0.6);">
+    <div class="login-card" style="max-width: 500px; text-align: left;">
+      <h3 id="categoryModalTitle" style="font-size: 1.25rem; margin-bottom: 16px;">Yangi Kategoriya Qo'shish</h3>
+      <form id="categoryForm">
+        <input type="hidden" id="catId">
+        
+        <div class="admin-form-group">
+          <label class="admin-form-label" for="catName">Kategoriya Nomi *</label>
+          <input type="text" id="catName" class="admin-input" placeholder="Masalan: Sovg'alar" required>
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-form-label" for="catSlug">Slug (URL uchun) *</label>
+          <input type="text" id="catSlug" class="admin-input" placeholder="sovgalar" required>
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-form-label" for="catBadge">Badge / Matn</label>
+          <input type="text" id="catBadge" class="admin-input" placeholder="10+ mahsulot">
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-form-label" for="catImage">Kategoriya Rasmi</label>
+          <input type="text" id="catImage" class="admin-input" placeholder="/images/cat_qulupnay.jpg" required>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+          <button type="button" class="btn-admin-danger btn-admin-sm" onclick="closeCategoryModal()">Bekor qilish</button>
+          <button type="submit" class="btn-admin-primary">Saqlash</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= ORDER DETAILS MODAL ================= -->
+  <div class="login-screen-overlay hidden" id="orderDetailsModal" style="background: rgba(0,0,0,0.6);">
+    <div class="login-card" style="max-width: 550px; text-align: left;">
+      <h3 id="orderModalTitle" style="font-size: 1.25rem; margin-bottom: 14px;">Buyurtma Tafsilotlari</h3>
+      <div id="orderDetailsContent" style="font-size: 0.88rem; line-height: 1.6;">
+        <!-- Dynamic content -->
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+        <button type="button" class="btn-admin-primary btn-admin-sm" onclick="window.print()">🖨️ Chop etish (Chek)</button>
+        <button type="button" class="btn-admin-danger btn-admin-sm" onclick="closeOrderModal()">Yopish</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= REVIEW MODAL ================= -->
+  <div class="login-screen-overlay hidden" id="adminReviewModal" style="background: rgba(0,0,0,0.6);">
+    <div class="login-card" style="max-width: 480px; text-align: left;">
+      <h3 style="font-size: 1.25rem; margin-bottom: 16px;">Yangi Mijoz Sharhini Qo'shish</h3>
+      <form id="adminReviewForm">
+        <div class="admin-form-group">
+          <label class="admin-form-label" for="adminRevAuthor">Muallif Ismi *</label>
+          <input type="text" id="adminRevAuthor" class="admin-input" placeholder="Nilufar A." required>
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-form-label" for="adminRevRating">Baho (1-5)</label>
+          <select id="adminRevRating" class="admin-select">
+            <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+            <option value="4">⭐⭐⭐⭐ (4/5)</option>
+            <option value="3">⭐⭐⭐ (3/5)</option>
+          </select>
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-form-label" for="adminRevComment">Sharh Matni *</label>
+          <textarea id="adminRevComment" class="admin-textarea" rows="3" required></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+          <button type="button" class="btn-admin-danger btn-admin-sm" onclick="closeAdminReviewModal()">Bekor qilish</button>
+          <button type="submit" class="btn-admin-primary">Saqlash</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>
