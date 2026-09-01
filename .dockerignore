@@ -12,6 +12,9 @@ yarn-error.log*
 # Faqat lokal ishlatiladigan asset skriptlari (sharp'ga bog'liq)
 scripts
 
+# Maket va ishlatilmaydigan dizayn fayllari - saytga chiqmasin
+design
+
 Dockerfile
 .dockerignore
 README.md

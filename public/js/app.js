@@ -1,5 +1,35 @@
 // Choco_by_Raya - Interactive Application Logic
 
+// HTML ichiga qo'yiladigan matnni xavfsizlantirish
+function esc(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/**
+ * Rasmni WebP bilan qaytaradi.
+ *
+ * /images/ ichidagi fayllarning .webp nusxasi bor (`npm run images` yaratadi),
+ * shuning uchun ular <picture> bilan beriladi. Admin yuklagan /uploads/
+ * fayllarida .webp nusxasi yo'q — ular uchun oddiy <img> qaytaramiz, aks holda
+ * <picture> mavjud bo'lmagan faylni tanlab, rasm umuman ko'rinmay qolardi.
+ */
+function imageTag(src, { alt = '', lazy = true, attrs = '' } = {}) {
+  const safeSrc = esc(src || '/images/prod_classic.jpg');
+  const loadAttrs = `${lazy ? 'loading="lazy" ' : ''}decoding="async"`;
+  const img = `<img src="${safeSrc}" alt="${esc(alt)}" ${loadAttrs} ${attrs}>`;
+
+  if (!safeSrc.startsWith('/images/') || !/\.(jpe?g|png)$/i.test(safeSrc)) {
+    return img;
+  }
+  const webp = safeSrc.replace(/\.(jpe?g|png)$/i, '.webp');
+  return `<picture><source srcset="${webp}" type="image/webp">${img}</picture>`;
+}
+
 const state = {
   products: [],
   categories: [],
@@ -136,7 +166,7 @@ function renderCategories() {
   elements.categoriesGrid.innerHTML = state.categories.map(cat => `
     <div class="category-card ${state.activeCategory === cat.slug ? 'active' : ''}" onclick="selectCategory('${cat.slug}')">
       <div class="category-img-box">
-        <img src="${cat.image || '/images/cat_qulupnay.jpg'}" alt="${cat.name}">
+        ${imageTag(cat.image || '/images/cat_qulupnay.jpg', { alt: cat.name })}
       </div>
       <div class="category-info">
         <div>
@@ -191,7 +221,10 @@ function renderProducts() {
     return `
       <div class="product-card">
         <div class="product-thumb-wrap">
-          <img src="${prod.image || '/images/prod_classic.jpg'}" alt="${prod.name}" loading="lazy" onclick="openQuickView('${prod.id}')" style="cursor:pointer;">
+          ${imageTag(prod.image, {
+            alt: prod.name,
+            attrs: `onclick="openQuickView('${esc(prod.id)}')" style="cursor:pointer;"`
+          })}
           ${prod.badge ? `<span class="product-tag">${prod.badge}</span>` : ''}
           <button class="product-fav-btn ${isFav ? 'active' : ''}" onclick="toggleWishlist('${prod.id}')" title="Saralanganlarga qo'shish">
             ♥
@@ -298,7 +331,7 @@ function updateCartUI() {
   elements.cartItemsList.innerHTML = state.cart.map(item => `
     <div class="cart-item">
       <div class="cart-item-img">
-        <img src="${item.image || '/images/prod_classic.jpg'}" alt="${item.name}">
+        ${imageTag(item.image, { alt: item.name })}
       </div>
       <div class="cart-item-details">
         <h4 class="cart-item-title">${item.name}</h4>
@@ -353,7 +386,7 @@ window.openQuickView = function(productId) {
 
   elements.quickViewContent.innerHTML = `
     <div class="quick-view-img">
-      <img src="${prod.image || '/images/prod_classic.jpg'}" alt="${prod.name}">
+      ${imageTag(prod.image, { alt: prod.name, lazy: false })}
     </div>
     <div class="quick-view-details">
       <h3>${prod.name}</h3>
@@ -473,7 +506,7 @@ if (elements.searchInput) {
     }
     elements.searchResultsList.innerHTML = matched.map(p => `
       <div style="display:flex; align-items:center; gap:12px; padding:8px; border-radius:8px; background:#FAF3F5; cursor:pointer;" onclick="openQuickView('${p.id}'); elements.searchModal.classList.remove('active');">
-        <img src="${p.image || '/images/prod_classic.jpg'}" style="width:40px; height:40px; border-radius:6px; object-fit:cover;">
+        ${imageTag(p.image, { alt: p.name, attrs: 'style="width:40px; height:40px; border-radius:6px; object-fit:cover;"' })}
         <div>
           <div style="font-weight:600; font-size:0.9rem; color:var(--chocolate);">${p.name}</div>
           <div style="font-size:0.8rem; color:var(--deep-rose); font-weight:700;">${formatSom(p.price)}</div>

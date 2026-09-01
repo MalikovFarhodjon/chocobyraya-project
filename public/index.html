@@ -5,8 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Choco_by_Raya ♡ - Shokoladli Qulupnaylar va Nafis Sovg'alar</title>
   <meta name="description" content="Toshkentda qo'lda tayyorlangan hashamatli shokoladli qulupnaylar, sovg'abop to'plamlar va shirin guldastalar. Bepul va tezkor yetkazib berish.">
+  <link rel="canonical" href="https://chocobyraya.uz/">
+  <meta name="theme-color" content="#F7E6EA">
+
+  <!-- Open Graph: Telegram, Instagram va Facebook'da havola ulashilganda -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Choco_by_Raya">
+  <meta property="og:locale" content="uz_UZ">
+  <meta property="og:url" content="https://chocobyraya.uz/">
+  <meta property="og:title" content="Choco_by_Raya ♡ - Shokoladli Qulupnaylar va Nafis Sovg'alar">
+  <meta property="og:description" content="Toshkentda qo'lda tayyorlangan hashamatli shokoladli qulupnaylar, sovg'abop to'plamlar va shirin guldastalar. Bepul va tezkor yetkazib berish.">
+  <meta property="og:image" content="https://chocobyraya.uz/images/hero_box.jpg">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Choco_by_Raya ♡ - Shokoladli Qulupnaylar va Nafis Sovg'alar">
+  <meta name="twitter:description" content="Toshkentda qo'lda tayyorlangan hashamatli shokoladli qulupnaylar va nafis sovg'alar.">
+  <meta name="twitter:image" content="https://chocobyraya.uz/images/hero_box.jpg">
+
   <link rel="stylesheet" href="/css/style.css">
-  <link rel="icon" href="/images/logo_strawberry.jpg" type="image/jpeg">
+  <link rel="icon" href="/images/logo_strawberry.webp" type="image/webp">
+  <link rel="preload" as="image" href="/images/hero_box.webp" type="image/webp" fetchpriority="high">
 </head>
 <body>
 
@@ -106,7 +126,11 @@
 
       <div class="hero-visual">
         <div class="hero-image-wrapper">
-          <img src="/images/hero_box.jpg" alt="Choco by Raya Hashamatli Shokoladli Qulupnaylar" id="heroImage">
+          <picture>
+            <source srcset="/images/hero_box.webp" type="image/webp">
+            <img src="/images/hero_box.jpg" alt="Choco by Raya Hashamatli Shokoladli Qulupnaylar" id="heroImage"
+                 width="1024" height="1024" fetchpriority="high" decoding="async">
+          </picture>
         </div>
         <div class="hero-floating-card">
           <div class="floating-icon">✨</div>
@@ -164,7 +188,10 @@
       <!-- Why Us Card -->
       <div class="why-us-card">
         <div class="why-us-img">
-          <img src="/images/cat_qulupnay.jpg" alt="Nima uchun biz">
+          <picture>
+            <source srcset="/images/cat_qulupnay.webp" type="image/webp">
+            <img src="/images/cat_qulupnay.jpg" alt="Nima uchun biz" width="800" height="800" loading="lazy" decoding="async">
+          </picture>
         </div>
         <div class="why-us-content">
           <h3>NIMA UCHUN BIZ?</h3>
@@ -197,7 +224,10 @@
           <a href="#categories" class="btn-primary" style="padding: 10px 22px; font-size: 0.88rem;">To'plamlarni ko'rish</a>
         </div>
         <div class="promo-gift-img">
-          <img src="/images/cat_sovga.jpg" alt="Maxsus Sovg'a">
+          <picture>
+            <source srcset="/images/cat_sovga.webp" type="image/webp">
+            <img src="/images/cat_sovga.jpg" alt="Maxsus Sovg'a" width="600" height="600" loading="lazy" decoding="async">
+          </picture>
         </div>
       </div>
     </div>

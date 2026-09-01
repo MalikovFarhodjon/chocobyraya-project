@@ -79,6 +79,12 @@ img {
   display: block;
 }
 
+/* <picture> WebP uchun <img> ni o'raydi. display:contents bilan u o'zi
+   quti hosil qilmaydi, shuning uchun mavjud layout o'zgarmay qoladi. */
+picture {
+  display: contents;
+}
+
 button {
   font-family: inherit;
   cursor: pointer;

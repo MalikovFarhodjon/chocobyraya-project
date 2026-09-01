@@ -173,6 +173,22 @@ app.use((req, res, next) => {
   next();
 });
 
+// robots.txt hostga qarab beriladi: admin subdomen qidiruv tizimlariga
+// umuman indekslanmasligi kerak.
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain');
+  if (isAdminHost(req)) {
+    return res.send('User-agent: *\nDisallow: /\n');
+  }
+  res.send(
+    'User-agent: *\n' +
+    'Allow: /\n' +
+    'Disallow: /api/\n' +
+    'Disallow: /uploads/\n\n' +
+    'Sitemap: https://chocobyraya.uz/sitemap.xml\n'
+  );
+});
+
 // express.static o'zi '/' uchun index.html qaytaradi, shuning uchun admin
 // subdomen tekshiruvi undan oldin turishi shart.
 app.get('/', (req, res, next) => {
@@ -182,7 +198,19 @@ app.get('/', (req, res, next) => {
   next();
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), {
+  setHeaders(res, filePath) {
+    if (/[\\/](images|uploads)[\\/]/.test(filePath)) {
+      // Rasm nomlari o'zgarmaydi, uzoq keshlash mumkin
+      res.setHeader('Cache-Control', 'public, max-age=2592000');
+    } else if (/\.html$/.test(filePath)) {
+      // HTML har doim yangilanib tursin
+      res.setHeader('Cache-Control', 'no-cache');
+    } else {
+      res.setHeader('Cache-Control', 'public, max-age=3600');
+    }
+  }
+}));
 
 // Admin Auth Middleware
 function requireAdmin(req, res, next) {
