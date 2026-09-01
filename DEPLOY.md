@@ -27,6 +27,13 @@ Natijada serverdagi o'rnatish: **86 ta paket, 2.7 MB, ~2 soniya, native kompilya
 | `PORT` | `3000` |
 | `DATA_DIR` | `/app/data` |
 | `UPLOADS_DIR` | `/app/public/uploads` |
+| `ADMIN_USERNAME` | admin login |
+| `ADMIN_PASSWORD` | kuchli parol |
+
+`ADMIN_USERNAME` va `ADMIN_PASSWORD` har safar ishga tushganda qo'llanadi va parol
+`scrypt` bilan hashlanib saqlanadi. Shu sababli admin paneldan parolni o'zgartirsangiz,
+Coolify'dagi `ADMIN_PASSWORD` ni ham yangilang — aks holda konteyner qayta ishga
+tushganda eski parolga qaytadi.
 
 ### Persistent Storage (MAJBURIY)
 
@@ -61,10 +68,26 @@ API ham o'sha domendan ishlaydi — CORS sozlash shart emas.
 `express.static`dan oldin turishi shart, chunki aks holda static middleware `/` uchun
 `index.html` ni o'zi qaytarib yuboradi.
 
+## Rasmlar
+
+Rasmlar **lokalda** optimallashtiriladi, serverda emas:
+
+```bash
+npm install          # sharp devDependency sifatida o'rnatiladi
+npm run images       # public/images ichidagi rasmlarni siqadi va .webp yaratadi
+git add public/images && git commit && git push
+```
+
+Skript har bir rasmni sayt ko'rsatadigan eng katta o'lchamgacha kichraytiradi va
+ikkita fayl qoldiradi: optimallashtirilgan `.jpg` (zaxira) va `.webp` (asosiy).
+Yangi rasm qo'shganda shu buyruqni qayta ishga tushiring.
+
 ## Deploydan keyin
 
-Admin panel `https://<domen>/admin` manzilida. Standart login `admin` / `admin123` —
-**birinchi kirishdayoq admin paneldagi "Parolni o'zgartirish" orqali almashtiring.**
+Admin panel **faqat** `https://admin.chocobyraya.uz` da ochiladi. Asosiy saytda
+`/admin` yo'li ham, admin tugmasi ham yo'q — tashqaridan qaraganda admin panel
+umuman mavjud emasdek ko'rinadi.
 
 Telegram xabarnomalari admin panel → Sozlamalar bo'limida `telegramBotToken` va
-`telegramChatId` kiritilgandan keyin ishlaydi.
+`telegramChatId` kiritilgandan keyin ishlaydi. Bu kalitlar ochiq API'dan
+qaytarilmaydi — ularni faqat tizimga kirgan admin ko'radi.
