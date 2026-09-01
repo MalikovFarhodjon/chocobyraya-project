@@ -45,6 +45,22 @@ Bularsiz har bir redeploy'da buyurtmalar, sozlamalar va yuklangan rasmlar o'chib
 - Path: `/api/health`
 - Port: `3000`
 
+### Domenlar
+
+| Domen | Nima ochiladi |
+|---|---|
+| `chocobyraya.uz` | Landing sayt |
+| `www.chocobyraya.uz` | Landing sayt |
+| `admin.chocobyraya.uz` | Admin panel (ildizda) |
+
+Ilova bitta Express protsessi: frontend, admin panel va API bir joyda. Frontend API'ni
+nisbiy yo'l bilan chaqiradi (`fetch('/api/...')`), shuning uchun qaysi domendan ochilsa,
+API ham o'sha domendan ishlaydi — CORS sozlash shart emas.
+
+`admin.` bilan boshlanadigan hostda ildiz sahifa `admin.html` ni qaytaradi. Bu tekshiruv
+`express.static`dan oldin turishi shart, chunki aks holda static middleware `/` uchun
+`index.html` ni o'zi qaytarib yuboradi.
+
 ## Deploydan keyin
 
 Admin panel `https://<domen>/admin` manzilida. Standart login `admin` / `admin123` —

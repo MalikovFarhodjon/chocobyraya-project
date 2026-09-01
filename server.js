@@ -12,6 +12,15 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Coolify'dagi reverse proxy ortida turamiz — req.hostname, req.protocol va
+// req.ip to'g'ri bo'lishi uchun forwarded headerlarga ishonamiz.
+app.set('trust proxy', true);
+
+// admin.<domen> da ochilgan sayt admin panelni ko'rsatadi
+function isAdminHost(req) {
+  return (req.hostname || '').toLowerCase().startsWith('admin.');
+}
+
 // Admin session store (in-memory simple session tokens)
 const activeSessions = new Set(['demo-admin-token-12345']);
 
@@ -40,6 +49,15 @@ const upload = multer({
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// express.static o'zi '/' uchun index.html qaytaradi, shuning uchun admin
+// subdomen tekshiruvi undan oldin turishi shart.
+app.get('/', (req, res, next) => {
+  if (isAdminHost(req)) {
+    return res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+  }
+  next();
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Admin Auth Middleware
@@ -315,6 +333,9 @@ app.get('/admin', (req, res) => {
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api/')) {
     return res.status(404).json({ error: 'Endpoint topilmadi' });
+  }
+  if (isAdminHost(req)) {
+    return res.sendFile(path.join(__dirname, 'public', 'admin.html'));
   }
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
