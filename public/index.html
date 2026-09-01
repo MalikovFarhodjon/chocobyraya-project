@@ -164,7 +164,7 @@
     <div class="container">
       <div class="section-title-wrap">
         <h2 class="section-title">
-          POPOLYAR MAHSULOTLAR
+          POPULYAR MAHSULOTLAR
           <span class="section-heart">♡</span>
         </h2>
       </div>
@@ -173,6 +173,20 @@
       <div class="products-filter-bar" id="productFilterBar">
         <button class="filter-chip active" data-category="all">Barchasi</button>
         <!-- Dynamically loaded chips -->
+      </div>
+
+      <!-- Natijalar soni va saralash -->
+      <div class="products-toolbar">
+        <span class="products-count" id="productsCount"></span>
+        <label class="sort-control" for="productSort">
+          <span class="sort-label">Saralash</span>
+          <select id="productSort" class="sort-select">
+            <option value="popular">Avval mashhurlari</option>
+            <option value="price-asc">Arzon → qimmat</option>
+            <option value="price-desc">Qimmat → arzon</option>
+            <option value="new">Yangi mahsulotlar</option>
+          </select>
+        </label>
       </div>
 
       <!-- Products Grid -->

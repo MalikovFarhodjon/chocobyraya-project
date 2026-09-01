@@ -36,8 +36,26 @@ const state = {
   reviews: [],
   settings: {},
   activeCategory: 'all',
+  sortBy: 'popular',
   cart: JSON.parse(localStorage.getItem('choco_cart') || '[]'),
   wishlist: JSON.parse(localStorage.getItem('choco_wishlist') || '[]'),
+};
+
+// Saralash usullari. Har biri Array.prototype.sort uchun taqqoslash funksiyasi.
+const SORTERS = {
+  // Mashhurlari oldinda, keyin reyting, keyin sharhlar soni
+  popular(a, b) {
+    if (Boolean(a.isPopular) !== Boolean(b.isPopular)) {
+      return a.isPopular ? -1 : 1;
+    }
+    if ((b.rating || 0) !== (a.rating || 0)) {
+      return (b.rating || 0) - (a.rating || 0);
+    }
+    return (b.reviewsCount || 0) - (a.reviewsCount || 0);
+  },
+  'price-asc': (a, b) => (a.price || 0) - (b.price || 0),
+  'price-desc': (a, b) => (b.price || 0) - (a.price || 0),
+  new: (a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
 };
 
 // ================= DOM Elements =================
@@ -56,6 +74,8 @@ const elements = {
   footerTelegram: document.getElementById('footerTelegram'),
   categoriesGrid: document.getElementById('categoriesGrid'),
   productFilterBar: document.getElementById('productFilterBar'),
+  productSort: document.getElementById('productSort'),
+  productsCount: document.getElementById('productsCount'),
   productsGrid: document.getElementById('productsGrid'),
   testimonialsGrid: document.getElementById('testimonialsGrid'),
   cartBadge: document.getElementById('cartBadge'),
@@ -199,6 +219,13 @@ window.selectCategory = function(slug) {
   }
 };
 
+function updateProductsCount(count) {
+  if (!elements.productsCount) return;
+  elements.productsCount.textContent = count === 0
+    ? 'Mahsulot topilmadi'
+    : `${count} ta mahsulot`;
+}
+
 // Render Products Grid
 function renderProducts() {
   if (!elements.productsGrid) return;
@@ -206,6 +233,12 @@ function renderProducts() {
   if (state.activeCategory !== 'all') {
     list = list.filter(p => p.category === state.activeCategory);
   }
+
+  // state.products ni buzmaslik uchun nusxa ustida saralaymiz
+  const sorter = SORTERS[state.sortBy] || SORTERS.popular;
+  list = [...list].sort(sorter);
+
+  updateProductsCount(list.length);
 
   if (list.length === 0) {
     elements.productsGrid.innerHTML = `
@@ -565,6 +598,14 @@ window.addEventListener('scroll', () => {
     header.classList.remove('scrolled');
   }
 });
+
+// Saralash tanlovi
+if (elements.productSort) {
+  elements.productSort.addEventListener('change', (e) => {
+    state.sortBy = e.target.value;
+    renderProducts();
+  });
+}
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {

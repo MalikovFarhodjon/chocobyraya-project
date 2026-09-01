@@ -629,7 +629,70 @@ input, textarea, select {
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 36px;
+  margin-bottom: 18px;
+}
+
+/* Natijalar soni (chapda) va saralash (o'ngda) */
+.products-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.products-count {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.sort-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.sort-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.sort-select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 8px 38px 8px 18px;
+  border-radius: var(--radius-full);
+  background-color: #FFFFFF;
+  /* Pastga qaragan chevron */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23B96677' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  border: 1.5px solid #F1DEE2;
+  color: var(--chocolate);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.sort-select:hover,
+.sort-select:focus-visible {
+  border-color: #B96677;
+  outline: none;
+  box-shadow: 0 4px 14px rgba(185, 102, 119, 0.22);
+}
+
+@media (max-width: 600px) {
+  .products-toolbar {
+    justify-content: center;
+  }
+  .sort-control {
+    margin-left: 0;
+  }
 }
 
 .filter-chip {
