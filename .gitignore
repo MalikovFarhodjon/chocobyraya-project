@@ -4,3 +4,7 @@ yarn-debug.log*
 yarn-error.log*
 .DS_Store
 .env
+
+# Ish vaqtida o'zgaradigan ma'lumotlar bazasi (ichida admin hisobi bor) - repoga tushmasin
+db/store.json
+public/uploads/

@@ -1,6 +1,34 @@
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
+
+// Parollar hech qachon ochiq matnda saqlanmaydi. scrypt Node'ning o'zida bor,
+// shuning uchun qo'shimcha paket (bcrypt/argon2) va native build kerak emas.
+const PASSWORD_PREFIX = 'scrypt$';
+
+export function hashPassword(password) {
+  const salt = crypto.randomBytes(16).toString('hex');
+  const hash = crypto.scryptSync(password, salt, 64).toString('hex');
+  return `${PASSWORD_PREFIX}${salt}$${hash}`;
+}
+
+export function verifyPassword(password, stored) {
+  if (typeof stored !== 'string' || typeof password !== 'string') return false;
+  // Eski, hashlanmagan store.json bilan ishlay olish uchun
+  if (!stored.startsWith(PASSWORD_PREFIX)) {
+    return stored.length > 0 && stored === password;
+  }
+  const [, salt, hash] = stored.split('$');
+  if (!salt || !hash) return false;
+  const expected = Buffer.from(hash, 'hex');
+  const actual = crypto.scryptSync(password, salt, expected.length);
+  return crypto.timingSafeEqual(expected, actual);
+}
+
+export function isHashed(stored) {
+  return typeof stored === 'string' && stored.startsWith(PASSWORD_PREFIX);
+}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -339,6 +367,39 @@ class Database {
       this.data = JSON.parse(JSON.stringify(initialData));
       this.save();
     }
+    this.secureAdminCredentials();
+  }
+
+  // Admin hisobini xavfsiz holatga keltiradi:
+  //  - ADMIN_USERNAME / ADMIN_PASSWORD berilgan bo'lsa, o'shalar kuchga kiradi
+  //  - saqlangan parol hali ochiq matnda bo'lsa, u hashlanadi
+  secureAdminCredentials() {
+    let changed = false;
+    const envUser = process.env.ADMIN_USERNAME;
+    const envPass = process.env.ADMIN_PASSWORD;
+
+    if (envUser && this.data.admin.username !== envUser) {
+      this.data.admin.username = envUser;
+      changed = true;
+    }
+    if (envPass) {
+      if (!verifyPassword(envPass, this.data.admin.password)) {
+        this.data.admin.password = hashPassword(envPass);
+        changed = true;
+      }
+    }
+    if (!isHashed(this.data.admin.password)) {
+      this.data.admin.password = hashPassword(this.data.admin.password);
+      changed = true;
+    }
+    if (changed) this.save();
+
+    if (verifyPassword('admin123', this.data.admin.password)) {
+      console.warn(
+        '⚠  DIQQAT: admin paroli hali standart holatda. ' +
+        'ADMIN_PASSWORD muhit o\'zgaruvchisi orqali kuchli parol o\'rnating.'
+      );
+    }
   }
 
   save() {
@@ -581,16 +642,24 @@ class Database {
 
   // --- Admin Auth ---
   verifyAdmin(username, password) {
-    return this.data.admin.username === username && this.data.admin.password === password;
+    const admin = this.data.admin;
+    if (!admin || admin.username !== username) return false;
+    return verifyPassword(password, admin.password);
   }
 
   updateAdminPassword(oldPassword, newPassword) {
-    if (this.data.admin.password !== oldPassword) {
+    if (!verifyPassword(oldPassword, this.data.admin.password)) {
       return false;
     }
-    this.data.admin.password = newPassword;
+    this.data.admin.password = hashPassword(newPassword);
     this.save();
     return true;
+  }
+
+  // Ochiq API uchun sozlamalar: Telegram maxfiy kalitlari bu yerdan chiqmaydi
+  getPublicSettings() {
+    const { telegramBotToken, telegramChatId, ...safe } = this.data.settings;
+    return safe;
   }
 
   // --- Analytics & Stats ---

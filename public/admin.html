@@ -15,19 +15,15 @@
       <div class="login-brand-logo">Choco_by_Raya ♡</div>
       <p class="login-card-sub">Admin Boshqaruv Paneliga Kirish</p>
 
-      <div class="login-hint-pill">
-        🔒 Standart login: <strong>admin</strong> | parol: <strong>admin123</strong>
-      </div>
-
-      <form id="adminLoginForm">
+      <form id="adminLoginForm" autocomplete="off">
         <div class="admin-form-group" style="text-align: left;">
           <label class="admin-form-label" for="loginUsername">Login</label>
-          <input type="text" id="loginUsername" class="admin-input" placeholder="admin" value="admin" required>
+          <input type="text" id="loginUsername" class="admin-input" autocomplete="username" required>
         </div>
 
         <div class="admin-form-group" style="text-align: left;">
           <label class="admin-form-label" for="loginPassword">Parol</label>
-          <input type="password" id="loginPassword" class="admin-input" placeholder="••••••••" value="admin123" required>
+          <input type="password" id="loginPassword" class="admin-input" autocomplete="current-password" required>
         </div>
 
         <button type="submit" class="btn-admin-primary" style="width: 100%; justify-content: center; padding: 12px; margin-top: 10px;">

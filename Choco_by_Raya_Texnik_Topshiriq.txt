@@ -1,0 +1,553 @@
+TEXNIK TOPSHIRIQ (TT)
+CHOCO_BY_RAYA — ONLINE SHIRINLIKLAR DO‘KONI
+
+1. LOYIHA MAQSADI
+Choco_by_Raya uchun zamonaviy, premium ko‘rinishga ega online shop yaratish.
+
+Sayt orqali mijoz:
+- mahsulotlarni ko‘rishi;
+- kategoriya bo‘yicha saralashi;
+- mahsulot haqida ma’lumot olishi;
+- savatga qo‘shishi;
+- buyurtma berishi;
+- yetkazib berish ma’lumotlarini kiritishi;
+- buyurtma holatini kuzatishi kerak.
+
+Sayt desktop, planshet va mobil telefonlarga to‘liq moslashgan (responsive) bo‘lishi kerak.
+
+2. DIZAYN TALABLARI
+Yuborilgan Choco_by_Raya maketidagi dizayn maksimal darajada saqlansin.
+
+Asosiy stil:
+- Premium
+- Minimalistik
+- Elegant
+- Shirinlik/gul sovg‘alari atmosferasi
+- Asosiy ranglar: och pushti, oq, pastel, jigarrang/shokolad rang
+- Yumshoq border-radius
+- Yengil shadow
+- Serif + zamonaviy sans-serif shrift kombinatsiyasi
+
+Maketdagi bloklarning joylashuvi, o‘lchamlari, ranglari, buttonlar, kartochkalar, spacing, ikonlar va typography imkon qadar 1:1 qilinsin.
+
+3. HEADER
+Yuqori informatsion bloklar:
+- Toshkent bo‘ylab bepul yetkazib berish
+- 100% sifatli mahsulotlar
+- Qo‘lda tayyorlangan muhtasham ta’m
+
+Navbar:
+- Logo: Choco_by_Raya
+- Asosiy
+- Mahsulotlar
+- To‘plamlar
+- Aksessuarlar
+- Biz haqimizda
+- Aloqa
+
+O‘ng tomonda:
+- Qidiruv
+- Profil
+- Savat
+
+Savat ikonkasida mahsulot soni ko‘rsatiladi.
+
+Mobil versiyada hamburger menu bo‘lishi kerak.
+
+4. HERO SECTION
+Asosiy banner.
+
+Matn:
+SEVGI BILAN, SIZ UCHUN
+
+Sarlavha:
+Har bir qulupnayda muhabbat va nafislik ♡
+
+Tavsif:
+Qo‘lda tayyorlangan shokoladli qulupnaylar va shirinliklar — sevimli insoningiz uchun eng mazali sovg‘a.
+
+Buttonlar:
+- Mahsulotlarimiz
+- To‘plamlar
+
+O‘ng tomonda katta mahsulot rasmi.
+
+Pastki afzalliklar:
+- Bepul yetkazib berish
+- Faqat tabiiy va sifatli mahsulotlar
+- Qo‘lda tayyorlangan har bir buyurtma
+
+5. KATEGORIYALAR
+Section title: KATEGORIYALAR
+
+Kategoriyalar:
+1. Qulupnaylar — 10+ mahsulot
+2. To‘plamlar — 15+ mahsulot
+3. Shokoladlar — 12+ mahsulot
+4. Sovg‘alar — 8+ mahsulot
+5. Shirin gul dastalar — 7+ mahsulot
+
+Har bir kartochkada:
+- rasm;
+- kategoriya nomi;
+- mahsulotlar soni;
+- o‘tish tugmasi.
+
+Kategoriya bosilganda tegishli mahsulotlar sahifasiga o‘tiladi.
+
+6. POPULAR PRODUCTS
+Section: POPULAR MAHSULOTLAR
+
+Desktopda 4 ta mahsulot bir qatorda.
+
+Har bir Product Card:
+- mahsulot rasmi;
+- wishlist yurakchasi;
+- mahsulot nomi;
+- narxi;
+- Savatga qo‘shish.
+
+Namuna mahsulotlar:
+- Shokoladli qulupnay Classic — 45 000 so‘m
+- Qulupnay to‘plami Premium — 250 000 so‘m
+- Shirin guldaста Deluxe — 350 000 so‘m
+- Mini to‘plam — 120 000 so‘m
+
+7. PRODUCT CARD FUNKSIONALI
+Wishlist:
+Bosilganda mahsulot sevimlilarga qo‘shiladi.
+Login qilinmagan foydalanuvchi uchun login talab qilinishi yoki local storage orqali vaqtincha saqlanishi mumkin.
+
+Savatga qo‘shish:
+Bosilganda “Mahsulot savatga qo‘shildi” notification chiqadi.
+Savatdagi mahsulot soni avtomatik yangilanadi.
+
+8. “NIMA UCHUN BIZ?” SECTION
+Chap tomonda mahsulot rasmi.
+O‘ng tomonda:
+
+NIMA UCHUN BIZ?
+
+Afzalliklar:
+- Yangi va sifatli mahsulotlar
+- Qo‘lda tayyorlangan
+- Chiroyli qadoqlash
+- O‘z vaqtida yetkazib berish
+
+9. CTA SECTION
+Banner:
+
+Sevimli insoningiz uchun nimalardir izlayapsizmi?
+
+Tavsif:
+Maxsus to‘plamlarimiz bilan tanishing va eng chiroyli sovg‘ani tanlang.
+
+Button:
+To‘plamlarni ko‘rish
+
+O‘ng tomonda sovg‘a qutisi rasmi.
+
+10. MIJOZLAR FIKRI
+Section: MIJOZLARIMIZ FIKRI
+
+Carousel ko‘rinishida.
+
+Har bir review:
+- 5 yulduz;
+- mijoz fikri;
+- mijoz ismi.
+
+Kamida 5–10 ta review admin paneldan boshqarilishi kerak.
+
+11. FOOTER
+4 ustun:
+
+1. Brand
+Choco_by_Raya
+Qisqa kompaniya haqida ma’lumot.
+Social:
+- Instagram
+- Telegram
+- WhatsApp
+
+2. MAHSULOTLAR
+- Qulupnaylar
+- To‘plamlar
+- Shokoladlar
+- Sovg‘alar
+- Shirin gul dastalar
+
+3. KOMPANIYA
+- Biz haqimizda
+- Yetkazib berish
+- To‘lov usullari
+- Aloqa
+
+4. ALOQA
+Telefon: +998 90 123 45 67
+Instagram: @choco_by_raya
+Telegram: t.me/choco_by_raya
+Manzil: Toshkent, O‘zbekiston
+
+12. MAHSULOTLAR SAHIFASI
+URL: /products
+
+Yuqorida: Mahsulotlar
+
+Filter:
+- Kategoriya
+- Narx bo‘yicha
+- Mashhurlik
+- Yangi mahsulotlar
+
+Search:
+Mahsulot nomi bo‘yicha qidirish.
+
+Sorting:
+- Avval mashhurlari
+- Arzon → qimmat
+- Qimmat → arzon
+- Yangi mahsulotlar
+
+13. PRODUCT DETAIL
+URL: /product/{id}
+
+Ko‘rsatiladi:
+- katta rasm;
+- qo‘shimcha rasmlar;
+- mahsulot nomi;
+- narxi;
+- mavjudligi;
+- tavsif;
+- tarkibi;
+- saqlash shartlari;
+- miqdor tanlash;
+- Savatga qo‘shish;
+- Wishlist.
+
+Namuna:
+Shokoladli qulupnay Classic
+45 000 so‘m
+Miqdor: - 1 +
+Savatga qo‘shish
+
+14. SAVAT
+URL: /cart
+
+Savat jadvali:
+- Mahsulot
+- Narx
+- Miqdor
+- Jami
+
+Har bir mahsulot:
+- rasm;
+- nom;
+- narx;
+- - / +;
+- o‘chirish.
+
+Pastda:
+Mahsulotlar jami
+Yetkazib berish
+Jami
+
+Button: BUYURTMA BERISH
+
+15. CHECKOUT
+Mijoz ma’lumotlari:
+- Ism
+- Telefon
+- Telegram username — ixtiyoriy
+
+Yetkazib berish:
+- Shahar
+- Tuman
+- Manzil
+- Mo‘ljal
+- Yetkazib berish sanasi
+- Yetkazib berish vaqti
+
+Qo‘shimcha:
+- Izoh
+- Sovg‘a uchun tabrik matni
+
+To‘lov:
+- Naqd
+- Click
+- Payme
+- Uzcard/Humo — agar integratsiya qilinsa
+
+Button: BUYURTMANI TASDIQLASH
+
+16. BUYURTMA TASDIQLANGANDAN KEYIN
+Mijozga:
+“Buyurtmangiz qabul qilindi ❤️”
+
+Buyurtma raqami:
+#ORD-10245
+
+Status:
+Qabul qilindi → Tayyorlanmoqda → Yetkazilmoqda → Yetkazildi
+
+17. ADMIN PANEL
+Admin URL: /admin
+
+Dashboard ko‘rsatkichlari:
+- Bugungi buyurtmalar
+- Bugungi savdo
+- Haftalik savdo
+- Oylik savdo
+- Jami mijozlar
+- Sotilgan mahsulotlar
+
+18. MAHSULOTLARNI BOSHQARISH
+Admin mahsulot qo‘shishi kerak.
+
+Maydonlar:
+- Mahsulot nomi
+- Kategoriya
+- Narx
+- Eski narx
+- Rasm
+- Qo‘shimcha rasmlar
+- Tavsif
+- Tarkibi
+- Qoldiq
+- SKU
+- Status
+
+Statuslar:
+- Faol
+- Faol emas
+- Sotuvda yo‘q
+- Bestseller
+- Yangi
+
+Admin:
+- qo‘shadi;
+- o‘zgartiradi;
+- o‘chiradi;
+- yashiradi.
+
+19. KATEGORIYA BOSHQARUVI
+Admin:
+- kategoriya qo‘shadi;
+- nomini o‘zgartiradi;
+- rasm qo‘shadi;
+- tartibini o‘zgartiradi;
+- o‘chiradi.
+
+20. BUYURTMALAR
+Admin barcha buyurtmalarni ko‘radi.
+
+Filter:
+- Sana
+- Status
+- Mijoz
+- Telefon
+- Buyurtma raqami
+
+Statuslar:
+1. Yangi
+2. Qabul qilindi
+3. Tayyorlanmoqda
+4. Yetkazib berishda
+5. Yetkazildi
+6. Bekor qilindi
+
+Buyurtma ichida:
+- mijoz ma’lumotlari;
+- mahsulotlar;
+- jami summa;
+- manzil;
+- yetkazish vaqti;
+- izoh.
+
+21. MIJOZLAR
+CRM ko‘rinishida:
+- Ism
+- Telefon
+- Buyurtmalar soni
+- Jami xarid
+- Oxirgi buyurtma
+- Ro‘yxatdan o‘tgan sana
+
+Mijoz profilida barcha buyurtmalari ko‘rinadi.
+
+22. REVIEW BOSHQARUVI
+Admin:
+- review qo‘shadi;
+- tahrirlaydi;
+- o‘chiradi;
+- publish/unpublish qiladi.
+
+23. PROMOKOD
+Admin promo-code yaratishi mumkin.
+
+Masalan:
+RAYA10
+
+Parametrlar:
+- chegirma foizi;
+- minimal buyurtma;
+- amal qilish muddati;
+- foydalanish limiti;
+- aktiv/inaktiv.
+
+24. TELEGRAM INTEGRATSIYA
+Buyurtma tushganda admin Telegram botiga xabar kelishi kerak.
+
+Namuna:
+
+🔔 YANGI BUYURTMA
+
+#ORD-10245
+👤 Dilshod
+📞 +998 XX XXX XX XX
+
+🍓 Qulupnay Classic × 2
+🍫 Shokolad × 1
+
+💰 Jami: 210 000 so‘m
+
+📍 Toshkent, Chilonzor
+🚚 Yetkazib berish: 18:00
+
+Imkon bo‘lsa admin Telegram orqali buyurtma statusini ham o‘zgartira olishi kerak.
+
+25. SEO
+Sayt:
+- Google uchun SEO-friendly;
+- semantic HTML;
+- meta title;
+- meta description;
+- Open Graph;
+- sitemap;
+- robots.txt;
+- mahsulotlar uchun SEO URL.
+
+Namuna:
+ /products/shokoladli-qulupnay-classic
+
+26. RESPONSIVE
+Desktop:
+- 1440px / 1920px ekranlar.
+
+Tablet:
+- 768px–1024px.
+
+Mobile:
+- 320px–767px.
+
+Mobil versiyada:
+- hamburger menu;
+- 2 ustunli product grid;
+- katta va qulay buttonlar;
+- sticky cart;
+- mobilga mos checkout.
+
+27. TEZLIK
+Sayt maksimal tez ishlashi kerak.
+
+Talablar:
+- WebP/AVIF rasmlar;
+- lazy loading;
+- image optimization;
+- code splitting;
+- caching;
+- API optimizatsiyasi.
+
+Target:
+Google PageSpeed 85+.
+
+28. TAVSIYA ETILADIGAN TEXNOLOGIYALAR
+
+Frontend:
+- Next.js / React
+- TypeScript
+- Tailwind CSS yoki SCSS
+
+Backend:
+- Node.js / NestJS
+- PostgreSQL
+
+Admin:
+- React / Next.js
+
+Authentication:
+- JWT
+
+Storage:
+- S3-compatible storage yoki Cloudinary
+
+29. DATABASE ASOSIY JADVALLARI
+Kamida:
+- users
+- products
+- categories
+- product_images
+- orders
+- order_items
+- payments
+- reviews
+- favorites
+- promocodes
+- delivery_zones
+- admin_users
+
+30. MUHIM TEXNIK TALAB
+Sayt faqat statik HTML qilib berilmasligi kerak.
+
+Barcha:
+- mahsulotlar;
+- kategoriyalar;
+- narxlar;
+- buyurtmalar;
+- reviewlar;
+- mijozlar
+
+backend/database orqali dinamik boshqarilishi kerak.
+
+Admin panelda o‘zgartirilgan ma’lumot frontendda avtomatik yangilanishi kerak.
+
+31. QABUL QILISH KRITERIYLARI
+Frontend dizayn maketga mos bo‘lishi.
+Desktop va mobile responsive ishlashi.
+Mahsulot qo‘shish ishlashi.
+Kategoriya ishlashi.
+Search ishlashi.
+Filter ishlashi.
+Wishlist ishlashi.
+Savat ishlashi.
+Checkout ishlashi.
+Buyurtma databasega tushishi.
+Admin panel ishlashi.
+Buyurtma statusi ishlashi.
+Telegram notification ishlashi.
+Promo-code ishlashi.
+SEO sozlangan bo‘lishi.
+Sayt SSL/HTTPS orqali ishlashi.
+Backup sozlangan bo‘lishi.
+Production serverga deploy qilingan bo‘lishi.
+
+ENG MUHIM:
+Frontend + Backend + Admin Panel + Database + Telegram bot integratsiyasi to‘liq ishlaydigan holatda topshirilishi kerak.
+
+32. ISHNI TOPSHIRISH
+Programmist loyiha yakunida:
+- source code;
+- Git repository;
+- database;
+- API;
+- admin panel;
+- frontend;
+- backend;
+- Telegram bot;
+- deployment;
+- environment variables ro‘yxati;
+- texnik dokumentatsiya;
+- backup;
+- administrator login ma’lumotlarini xavfsiz topshirishi kerak.
+
+Barcha funksiyalar real ma’lumotlar bilan test qilinadi.

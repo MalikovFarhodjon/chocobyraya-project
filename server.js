@@ -3,6 +3,7 @@ import cors from 'cors';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { db } from './db/database.js';
 
@@ -21,8 +22,66 @@ function isAdminHost(req) {
   return (req.hostname || '').toLowerCase().startsWith('admin.');
 }
 
-// Admin session store (in-memory simple session tokens)
-const activeSessions = new Set(['demo-admin-token-12345']);
+// Admin sessiyalari (xotirada). Token -> tugash vaqti.
+// Hech qanday oldindan yozilgan ("demo") token yo'q: sessiya faqat
+// muvaffaqiyatli login orqali paydo bo'ladi.
+const SESSION_TTL_MS = 8 * 60 * 60 * 1000; // 8 soat
+const activeSessions = new Map();
+
+function createSession() {
+  const token = crypto.randomBytes(32).toString('hex');
+  activeSessions.set(token, Date.now() + SESSION_TTL_MS);
+  return token;
+}
+
+function isValidSession(token) {
+  const expiresAt = activeSessions.get(token);
+  if (!expiresAt) return false;
+  if (Date.now() > expiresAt) {
+    activeSessions.delete(token);
+    return false;
+  }
+  return true;
+}
+
+// Muddati o'tgan sessiyalarni vaqti-vaqti bilan tozalab turamiz
+setInterval(() => {
+  const now = Date.now();
+  for (const [token, expiresAt] of activeSessions) {
+    if (now > expiresAt) activeSessions.delete(token);
+  }
+}, 60 * 60 * 1000).unref();
+
+// Login urinishlarini IP bo'yicha cheklash (brute-force'ga qarshi)
+const LOGIN_WINDOW_MS = 15 * 60 * 1000;
+const LOGIN_MAX_ATTEMPTS = 8;
+const loginAttempts = new Map();
+
+function loginRateLimit(req, res, next) {
+  const ip = req.ip || 'unknown';
+  const now = Date.now();
+  const entry = loginAttempts.get(ip);
+
+  if (!entry || now > entry.resetAt) {
+    loginAttempts.set(ip, { count: 0, resetAt: now + LOGIN_WINDOW_MS });
+  } else if (entry.count >= LOGIN_MAX_ATTEMPTS) {
+    const minutes = Math.ceil((entry.resetAt - now) / 60000);
+    return res.status(429).json({
+      success: false,
+      message: `Juda ko'p urinish. ${minutes} daqiqadan so'ng qayta urinib ko'ring.`
+    });
+  }
+  next();
+}
+
+function noteFailedLogin(req) {
+  const entry = loginAttempts.get(req.ip || 'unknown');
+  if (entry) entry.count += 1;
+}
+
+function clearLoginAttempts(req) {
+  loginAttempts.delete(req.ip || 'unknown');
+}
 
 // Ensure uploads folder exists
 const uploadsDir = process.env.UPLOADS_DIR || path.join(__dirname, 'public', 'uploads');
@@ -31,24 +90,89 @@ if (!fs.existsSync(uploadsDir)) {
 }
 
 // Multer setup for image uploads
+// Faqat rasm yuklashga ruxsat. Kengaytma foydalanuvchi yuborgan nomdan emas,
+// shu ro'yxatdan olinadi — aks holda .html/.js yuklab, uni sayt domenidan
+// ochib yuborish mumkin bo'lardi.
+const ALLOWED_IMAGE_TYPES = {
+  'image/jpeg': '.jpg',
+  'image/png': '.png',
+  'image/webp': '.webp',
+  'image/gif': '.gif'
+};
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, uploadsDir);
   },
   filename: function (req, file, cb) {
-    const ext = path.extname(file.originalname);
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    cb(null, 'choco-' + uniqueSuffix + ext);
+    const ext = ALLOWED_IMAGE_TYPES[file.mimetype] || '.bin';
+    const uniqueSuffix = crypto.randomBytes(12).toString('hex');
+    cb(null, 'choco-' + Date.now() + '-' + uniqueSuffix + ext);
   }
 });
+
 const upload = multer({
   storage: storage,
-  limits: { fileSize: 10 * 1024 * 1024 } // 10MB
+  limits: { fileSize: 5 * 1024 * 1024, files: 1 }, // 5MB
+  fileFilter: function (req, file, cb) {
+    if (!ALLOWED_IMAGE_TYPES[file.mimetype]) {
+      return cb(new Error('Faqat rasm yuklash mumkin (JPG, PNG, WebP, GIF)'));
+    }
+    cb(null, true);
+  }
 });
 
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// CORS: sukut bo'yicha faqat o'z domenidan (same-origin) so'rovlarga ruxsat.
+// Qo'shimcha domenlar kerak bo'lsa, ALLOWED_ORIGINS orqali beriladi.
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
+  .split(',')
+  .map(s => s.trim())
+  .filter(Boolean);
+
+app.use(cors((req, cb) => {
+  const origin = req.headers.origin;
+  let allowed = false;
+  if (!origin) {
+    allowed = true; // oddiy navigatsiya yoki server-to-server so'rov
+  } else if (allowedOrigins.includes(origin)) {
+    allowed = true;
+  } else {
+    try {
+      allowed = new URL(origin).host === req.headers.host;
+    } catch {
+      allowed = false;
+    }
+  }
+  cb(null, { origin: allowed, credentials: false });
+}));
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: true, limit: '1mb' }));
+
+// Asosiy xavfsizlik headerlari (qo'shimcha paketsiz)
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  res.setHeader('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
+  res.removeHeader('X-Powered-By');
+  if (req.secure) {
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+  }
+  next();
+});
+
+// Admin panel fayllari faqat admin subdomenida beriladi. Asosiy domenda
+// ular umuman yo'qdek ko'rinadi (oddiy sahifa qaytadi), shunda tasodifiy
+// tashrifchi admin panel borligini ham bilmaydi.
+const ADMIN_ASSETS = new Set(['/admin', '/admin.html', '/css/admin.css', '/js/admin.js']);
+
+app.use((req, res, next) => {
+  if (ADMIN_ASSETS.has(req.path) && !isAdminHost(req)) {
+    return res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  }
+  next();
+});
+
 // express.static o'zi '/' uchun index.html qaytaradi, shuning uchun admin
 // subdomen tekshiruvi undan oldin turishi shart.
 app.get('/', (req, res, next) => {
@@ -67,7 +191,7 @@ function requireAdmin(req, res, next) {
     return res.status(401).json({ success: false, message: 'Avtorizatsiyadan o\'tilmagan' });
   }
   const token = authHeader.replace('Bearer ', '').trim();
-  if (!activeSessions.has(token)) {
+  if (!isValidSession(token)) {
     return res.status(403).json({ success: false, message: 'Ruxsat berilmadi yoki sessiya tugagan' });
   }
   next();
@@ -115,17 +239,18 @@ app.get('/api/health', (req, res) => {
 });
 
 // --- Auth ---
-app.post('/api/auth/login', (req, res) => {
+app.post('/api/auth/login', loginRateLimit, (req, res) => {
   const { username, password } = req.body;
   if (db.verifyAdmin(username, password)) {
-    const token = 'token-' + Date.now() + '-' + Math.random().toString(36).substring(2);
-    activeSessions.add(token);
+    clearLoginAttempts(req);
+    const token = createSession();
     return res.json({
       success: true,
       token,
       admin: { username, name: 'Bosh Admin' }
     });
   }
+  noteFailedLogin(req);
   return res.status(401).json({ success: false, message: 'Login yoki parol noto\'g\'ri' });
 });
 
@@ -147,20 +272,29 @@ app.post('/api/auth/change-password', requireAdmin, (req, res) => {
   if (!oldPassword || !newPassword) {
     return res.status(400).json({ success: false, message: 'Barcha maydonlarni to\'ldiring' });
   }
+  if (String(newPassword).length < 10) {
+    return res.status(400).json({ success: false, message: 'Yangi parol kamida 10 ta belgidan iborat bo\'lishi kerak' });
+  }
   const changed = db.updateAdminPassword(oldPassword, newPassword);
   if (!changed) {
     return res.status(400).json({ success: false, message: 'Eski parol noto\'g\'ri' });
   }
-  res.json({ success: true, message: 'Parol muvaffaqiyatli o\'zgartirildi' });
+  // Parol o'zgargach barcha eski sessiyalar bekor qilinadi
+  activeSessions.clear();
+  res.json({ success: true, message: 'Parol o\'zgartirildi. Iltimos, qaytadan kiring.' });
 });
 
 // --- Uploads ---
-app.post('/api/upload', requireAdmin, upload.single('image'), (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ success: false, message: 'Fayl tanlanmadi' });
-  }
-  const fileUrl = '/uploads/' + req.file.filename;
-  res.json({ success: true, url: fileUrl });
+app.post('/api/upload', requireAdmin, (req, res) => {
+  upload.single('image')(req, res, (err) => {
+    if (err) {
+      return res.status(400).json({ success: false, message: err.message });
+    }
+    if (!req.file) {
+      return res.status(400).json({ success: false, message: 'Fayl tanlanmadi' });
+    }
+    res.json({ success: true, url: '/uploads/' + req.file.filename });
+  });
 });
 
 // --- Products ---
@@ -311,8 +445,11 @@ app.delete('/api/reviews/:id', requireAdmin, (req, res) => {
 });
 
 // --- Settings ---
+// Sozlamalar: Telegram kalitlari faqat tizimga kirgan adminga ko'rinadi
 app.get('/api/settings', (req, res) => {
-  res.json({ success: true, data: db.getSettings() });
+  const token = (req.headers.authorization || '').replace('Bearer ', '').trim();
+  const data = isValidSession(token) ? db.getSettings() : db.getPublicSettings();
+  res.json({ success: true, data });
 });
 
 app.put('/api/settings', requireAdmin, (req, res) => {
@@ -325,7 +462,8 @@ app.get('/api/stats', requireAdmin, (req, res) => {
   res.json({ success: true, data: db.getStats() });
 });
 
-// Fallback to index.html or admin.html
+// Bu yo'lga faqat admin subdomenidan kelinadi — yuqoridagi ADMIN_ASSETS
+// tekshiruvi boshqa domenlarni bu yergacha o'tkazmaydi.
 app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
@@ -341,6 +479,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🍓 Choco_by_Raya server is running on http://localhost:${PORT}`);
-  console.log(`👑 Admin panel: http://localhost:${PORT}/admin`);
+  console.log(`🍓 Choco_by_Raya server is running on port ${PORT}`);
 });

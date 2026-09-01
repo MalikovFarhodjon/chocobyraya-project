@@ -645,7 +645,8 @@ if (adminReviewForm) {
 // 6. Settings Tab
 async function loadSettings() {
   try {
-    const res = await fetch('/api/settings');
+    // Auth header bilan so'raymiz — Telegram kalitlari faqat shunda qaytadi
+    const res = await fetch('/api/settings', { headers: getAuthHeaders() });
     const data = await res.json();
     if (data.success) {
       adminState.settings = data.data;
